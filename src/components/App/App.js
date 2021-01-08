@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import mapStoreToProps from '../../redux/mapStateToProps';
 import './App.css';
 
 class App extends Component {
@@ -16,10 +17,11 @@ class App extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    console.log('WEEE', this.state.logo)
+    this.props.dispatch({ type: 'FETCH_LOGO', payload: this.state.logo })
   }
 
   render() {
+    console.log('This is reduxState', this.props.reduxState)
     return (
       <div className="App">
         <header className='header'>
@@ -30,10 +32,11 @@ class App extends Component {
           <label>Enter a Brand: </label>
           <input onChange={this.handleChange} placeholder='Brand' type='text' />
           <button type='submit'>Get Logo!</button>
+          <img alt='Logo' src={this.props.reduxState.logoReducer.config?.url}></img>
         </form>
       </div>
     );
   }
 }
 
-export default connect()(App);
+export default connect(mapStoreToProps)(App);
