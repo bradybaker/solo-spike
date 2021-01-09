@@ -8,25 +8,31 @@ import './App.css';
 class App extends Component {
 
   state = {
-    logo: ''
+    newBrand: {
+      brandName: '',
+      brandLogo: ''
+    }
   }
 
   handleChange = (event) => {
-    this.props.dispatch({ type: 'FETCH_SEARCH', payload: this.state.logo })
+    this.props.dispatch({ type: 'FETCH_SEARCH', payload: event.target.value })
     this.setState({
-      logo: event.target.value
+      newBrand: {
+        brandName: event.target.value,
+        brandLogo: this.props.reduxState.autocompleteReducer[0]?.logo
+      }
     })
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.dispatch({ type: 'FETCH_LOGO', payload: this.state.logo })
+    this.props.dispatch({ type: 'ADD_BRANDS', payload: this.state.newBrand })
   }
 
   render() {
     return (
       <div className="App">
-        {JSON.stringify(this.props.reduxState.autocompleteReducer)}
+        {JSON.stringify(this.state)}
         <header className='header'>
           Brady Baker Solo Spike
         </header>
@@ -36,14 +42,13 @@ class App extends Component {
           <Autocomplete
             id="combo-box-demo"
             options={this.props.reduxState?.autocompleteReducer}
-            getOptionLabel={(option) => option.domain}
+            getOptionLabel={(option) => option.name}
             style={{ width: 300, justifyContent: 'center' }}
-            renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" onChange={this.handleChange} />}
+            renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" onChange={(event) => this.handleChange(event, 'brandName')} />}
 
           />
           <input placeholder='Brand' type='text' />
           <button type='submit'>Get Logo!</button>
-          <img alt='Logo' src={this.props.reduxState?.autocompleteReducer[0].logo}></img>
         </form>
       </div>
     );

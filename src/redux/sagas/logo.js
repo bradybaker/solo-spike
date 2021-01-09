@@ -1,18 +1,17 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-function* fetchLogo(action) {
+function* addBrand(action) {
     try {
-        const response = yield axios.get(`https://logo.clearbit.com/${action.payload}.com`)
-        console.log('This is response', response)
-        yield put({ type: 'SET_LOGO', payload: response })
+        axios.post('/api/logo', action.payload)
+        yield put({ type: 'FETCH_BRANDS' })
     } catch (error) {
         console.log('Error in logoSaga', error)
     }
 }
 
 function* logoSaga() {
-    yield takeLatest('FETCH_LOGO', fetchLogo)
+    yield takeLatest('ADD_BRANDS', addBrand)
 }
 
 export default logoSaga;
