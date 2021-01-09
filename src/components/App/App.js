@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import mapStoreToProps from '../../redux/mapStateToProps';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import './App.css';
 
 class App extends Component {
@@ -10,6 +12,7 @@ class App extends Component {
   }
 
   handleChange = (event) => {
+    this.props.dispatch({ type: 'FETCH_SEARCH', payload: this.state.logo })
     this.setState({
       logo: event.target.value
     })
@@ -21,18 +24,26 @@ class App extends Component {
   }
 
   render() {
-    console.log('This is reduxState', this.props.reduxState)
     return (
       <div className="App">
+        {JSON.stringify(this.props.reduxState.autocompleteReducer)}
         <header className='header'>
           Brady Baker Solo Spike
         </header>
         <h1>Generate a Logo!</h1>
         <form onSubmit={this.handleSubmit}>
           <label>Enter a Brand: </label>
-          <input onChange={this.handleChange} placeholder='Brand' type='text' />
+          <Autocomplete
+            id="combo-box-demo"
+            options={this.props.reduxState?.autocompleteReducer}
+            getOptionLabel={(option) => option.domain}
+            style={{ width: 300, justifyContent: 'center' }}
+            renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" onChange={this.handleChange} />}
+
+          />
+          <input placeholder='Brand' type='text' />
           <button type='submit'>Get Logo!</button>
-          <img alt='Logo' src={this.props.reduxState.logoReducer.config?.url}></img>
+          <img alt='Logo' src={this.props.reduxState?.autocompleteReducer[0].logo}></img>
         </form>
       </div>
     );
@@ -40,3 +51,4 @@ class App extends Component {
 }
 
 export default connect(mapStoreToProps)(App);
+
