@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# The Logo Generator Solo-Spike!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+For this web app I chose to practice using the Autocomplete component from Material-UI/Lab with an API from clearbit.com. These tools allow user to type in a company name and render the name of the company and it's logo on the DOM. This spike was a little more challenging than I had initially thought it would be. This was mostly due to the functionality of the Autocomplete component. It's usage is intended for predetermined data, not dynamically like I intended. I used optional chaining in the component to get around this. Optional chaining basically says to wait for a null or undefined variable to be defined. Useful for async work and keeping your code running. This allowed me to generate search results from the API and send them back to the Autocomplete component for the user to see as they type.
 
-In the project directory, you can run:
+I also took a deeper dive into the Material-UI docs since front-end design is one of my favorite parts of development. I practiced with a theme.js file to change prop types and override design with CSS defined in the specific component's API. I am very excited to continue how to elevate my future apps with the vast library of Mui. This was a really fun weekend! 
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Prerequisites
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [Node.js](https://nodejs.org/en/)
+- [Postgres](https://www.postgresql.org/download/)
 
-### `npm test`
+## Installation 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Open Postico
+2. Copy code from data.sql into your db
+3. run `npm install`
+4. In two different terminals run `npm run server` and `npm run client`
+5. Web app is viewable on localhost:3000
 
-### `npm run build`
+## Built With 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React
+- Redux
+- Redux-Saga
+- SQL
+- Axios
+- Material-UI core/icons/lab
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

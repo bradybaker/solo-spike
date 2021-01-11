@@ -98,7 +98,7 @@ class AddBrandForm extends Component {
                                         options={this.props.reduxState?.autocompleteReducer}
                                         getOptionLabel={(option) => option.name}
                                         style={{ width: 300, justifyContent: 'center' }}
-                                        renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" onChange={(event) => this.handleChange(event, 'brandName')} />}
+                                        renderInput={(params) => <TextField {...params} label="Brand Name" variant="outlined" onChange={(event) => this.handleChange(event, 'brandName')} />}
 
                                     />
 
