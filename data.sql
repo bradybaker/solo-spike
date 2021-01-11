@@ -1,0 +1,5 @@
+CREATE TABLE "brands" (
+	"id" SERIAL PRIMARY KEY,
+  	"name" VARCHAR(120) NOT NULL,
+  	"logo"  VARCHAR(120) NOT NULL
+);

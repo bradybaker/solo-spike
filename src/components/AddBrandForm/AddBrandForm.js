@@ -7,7 +7,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
-import Button from '@material-ui/core/Button';
+import { ThemeProvider, Button, Grid } from '@material-ui/core';
+import theme from '../../theme';
+
 
 
 // function rand() {
@@ -70,39 +72,43 @@ class AddBrandForm extends Component {
     render() {
         const { classes } = this.props;
         return (
-            <div>
-
-                <Typography gutterBottom>Click to get the full Modal experience!</Typography>
-                <Button onClick={this.handleOpen}>Add Brand</Button>
-                <Modal
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description"
-                    open={this.state.open}
-                    onClose={this.handleClose}
-                >
-                    <div style={getModalStyle()} className={classes.paper}>
-                        <Typography variant="h6" id="modal-title">
-                            Add A Brand Below!
+            <ThemeProvider theme={theme}>
+                <Grid container spacing={8}>
+                    <Grid item xs='12' >
+                        <Typography gutterBottom>Click to get the full Modal experience!</Typography>
+                        <Button variant='contained' color='primary' onClick={this.handleOpen}>Add Brand!</Button>
+                    </Grid>
+                    <Modal
+                        aria-labelledby="simple-modal-title"
+                        aria-describedby="simple-modal-description"
+                        open={this.state.open}
+                        onClose={this.handleClose}
+                    >
+                        <Grid item xs={12}>
+                            <div style={getModalStyle()} className={classes.paper}>
+                                <Typography variant="h6" id="modal-title">
+                                    Add A Brand Below!
                             </Typography>
-                        <Typography variant="subtitle1" id="simple-modal-description">
-                            Your favorite brands should populate as you type
+                                <Typography variant="subtitle1" id="simple-modal-description">
+                                    Your favorite brands should populate as you type
                             </Typography>
-                        <form onSubmit={this.handleSubmit}>
-                            <Autocomplete
-                                id="combo-box-demo"
-                                options={this.props.reduxState?.autocompleteReducer}
-                                getOptionLabel={(option) => option.name}
-                                style={{ width: 300, justifyContent: 'center' }}
-                                renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" onChange={(event) => this.handleChange(event, 'brandName')} />}
+                                <form onSubmit={this.handleSubmit}>
+                                    <Autocomplete
+                                        id="combo-box-demo"
+                                        options={this.props.reduxState?.autocompleteReducer}
+                                        getOptionLabel={(option) => option.name}
+                                        style={{ width: 300, justifyContent: 'center' }}
+                                        renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" onChange={(event) => this.handleChange(event, 'brandName')} />}
 
-                            />
+                                    />
 
-                            <Button type='submit'>Get Logo!</Button>
-                        </form>
-                    </div>
-                </Modal>
-
-            </div>
+                                    <Button variant='contained' color='secondary' type='submit'>Get Logo!</Button>
+                                </form>
+                            </div>
+                        </Grid>
+                    </Modal>
+                </Grid>
+            </ThemeProvider>
         )
     }
 }
